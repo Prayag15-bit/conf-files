@@ -1,0 +1,39 @@
+$TTL 300
+@               IN      SOA     ns1.paya.com. ns2.paya.com. (
+                                        2019120303   ; Serial
+                                        1450         ; Refresh
+                                        145          ; Retry
+                                        604800       ; Expire
+                                        300          ; TTL
+                                        )
+
+                        IN      NS      ns1.paya.com.
+                        IN      NS      ns2.paya.com.
+
+ns1                     IN      A       10.74.252.136
+ns2                     IN      A       10.74.252.136
+
+
+                        IN      TXT    "v=spf1 -all"
+haproxy            IN      A       10.74.254.221
+bootstrap.hogwarts               IN      A       10.74.251.250
+*.apps.hogwarts             IN      A       10.74.254.221
+api.hogwarts                IN      A       10.74.254.221
+api-int.hogwarts            IN      A       10.74.254.221
+master-0.hogwarts             IN      A       10.74.251.59
+master-1.hogwarts                IN      A       10.74.250.228
+master-2.hogwarts                IN      A       10.74.251.202
+etcd-0.hogwarts             IN      A       10.74.251.59
+etcd-1.hogwarts             IN      A       10.74.250.228
+etcd-2.hogwarts             IN      A       10.74.251.202
+worker-0.hogwarts              IN      A       10.74.250.5
+worker-1.hogwarts                  IN      A       10.74.249.126
+
+;_service._proto.name.     TTL   class SRV priority weight port target.
+_etcd-server-ssl._tcp.hogwarts.paya.com.  86400 IN    SRV 0        10     2380 etcd-0.hogwarts
+_etcd-server-ssl._tcp.hogwarts.paya.com.  86400 IN    SRV 0        10     2380 etcd-1.hogwarts
+_etcd-server-ssl._tcp.hogwarts.paya.com.  86400 IN    SRV 0        10     2380 etcd-2.hogwarts
+;testing access
+;;; Test2
+;; EOF
+;;;
